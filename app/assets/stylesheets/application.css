@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+
+ /* *セレクター・・・すべての要素に適用させる */
+ * {
+   /* paddingやborderの設定を行なっても、要素の大きさはwidthやheightで指定したサイズのまま変わらなくなる */
+   box-sizing: border-box;
+ }
