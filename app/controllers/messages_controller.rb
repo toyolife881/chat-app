@@ -1,8 +1,11 @@
 class MessagesController < ApplicationController
   def index
-    # @messages = Message.all
     @message = Message.new
     @room = Room.find(params[:room_id])
+    # ルームに紐づいているすべてのメッセージを、@messagesへ代入
+    # メッセージに紐づくユーザー情報の取得に、メッセージの数と同じ回数のアクセスが必要になるので、N+1問題が発生するので、
+    # includesメソッドで回避
+    @messages = @room.messages.includes(:user)
   end
 
   def create
@@ -12,6 +15,7 @@ class MessagesController < ApplicationController
     if @message.save 
       redirect_to room_messages_path(@room)
     else
+      @messages = @room.messages.includes(:user)
       render :index
     end
   end
