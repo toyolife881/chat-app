@@ -3,6 +3,8 @@ class Message < ApplicationRecord
   belongs_to :room
   # 1つのメッセージは、1人のユーザーから送信
   belongs_to :user
+
+  validates :content ,presence: true
 end
 
 
