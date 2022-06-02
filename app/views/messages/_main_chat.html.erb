@@ -11,21 +11,26 @@
   </div>
 </div>
 <div class="messages">
+<%# <% @messages.each do |message|%> 
   <div class="message">
     <div class="upper_message">
       <div class="message_user">
         Tom
+        <%# <%= message.name %> 
       </div>
       <div class="message_date">
         2020/03/31(Wed) 12:43:30
+        <%# <%= message.created_at %> 
       </div>
     </div>
     <div class="lower_message">
       <div class="message_content">
         おはよう
+        <%# <%= message.content %> 
       </div>
     </div>
   </div>
+  <%# <% end %>
   <div class="message">
     <div class="upper_message">
       <div class="message_user">
@@ -42,15 +47,22 @@
     </div>
   </div>
 </div>
-<div class="form">
+
+
+<%# <div class="form"> %>
+<%= form_with model: [@room,@message], class: 'form', local: true do |f| %>
   <div class="form_input">
-    <input class="form_message" placeholder= "type a message">
+    <%# <input class="form_message" placeholder= "type a message"> %>
+    <%= f.text_field :content, class: 'form_message', placeholder: 'type a message' %>
     <label class="form_image">
       <span class="image_file">
         画像
       </span>
-      <input type="file" class="hidden">
+      <%# <input type="file" class="hidden"> %>
+      <%= f.file_field :image, class:'hidden'%>
     </label>
   </div>
-  <input class="form_submit" type="submit" value="送信">
-</div>
+  <%# <input class="form_submit" type="submit" value="送信"> %>
+  <%= f.submit '送信', class: 'form_submit'%>
+<%# </div> %>
+<% end %>
