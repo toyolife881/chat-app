@@ -17,6 +17,13 @@ class RoomsController < ApplicationController
     end
   end
 
+  def destroy
+    # 削除したいチャットルームの情報を取得
+    room = Room.find(params[:id])
+    room.destroy
+    redirect_to root_path
+  end
+
   private
 
   def room_params

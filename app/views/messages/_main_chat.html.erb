@@ -1,20 +1,22 @@
 <div class="chat_header">
   <div class="left_header">
     <div class="header_title">
-      hogefuga
+      <%# hogefuga %>
+      <%= @room.name %>
     </div>
   </div>
   <div class="right_header">
     <div class="header_button">
-      <a href="#">チャットを終了する</a>
+      <%# <a href="#">チャットを終了する</a> %>
+      <%= link_to 'チャットを終了する', room_path(@room), method: :delete %>
     </div>
   </div>
 </div>
-<div class="messages">
-  <div class="message">
+ <div class="messages">
+  <%# <div class="message">
     <div class="upper_message">
       <div class="message_user">
-        Tom
+        Tom 
       </div>
       <div class="message_date">
         2020/03/31(Wed) 12:43:30
@@ -22,7 +24,7 @@
     </div>
     <div class="lower_message">
       <div class="message_content">
-        おはよう
+        おはよう 
       </div>
     </div>
   </div>
@@ -39,18 +41,29 @@
       <div class="message_content">
         おはよう
       </div>
-    </div>
-  </div>
+    </div> %>
+  <%# </div> %>
+
+  <%# _message.html.erbを部分テンプレートとして読み込むことが可能 %>
+  <%# @messagesには繰り返し表示させたい要素が複数入っている %>
+  <%= render partial: 'message', collection: @messages %>
 </div>
-<div class="form">
+
+
+<%# <div class="form"> %>
+<%= form_with model: [@room,@message], class: 'form', local: true do |f| %>
   <div class="form_input">
-    <input class="form_message" placeholder= "type a message">
+    <%# <input class="form_message" placeholder= "type a message"> %>
+    <%= f.text_field :content, class: 'form_message', placeholder: 'type a message' %>
     <label class="form_image">
       <span class="image_file">
         画像
       </span>
-      <input type="file" class="hidden">
+      <%# <input type="file" class="hidden"> %>
+      <%= f.file_field :image, class:'hidden'%>
     </label>
   </div>
-  <input class="form_submit" type="submit" value="送信">
-</div>
+  <%# <input class="form_submit" type="submit" value="送信"> %>
+  <%= f.submit '送信', class: 'form_submit'%>
+<%# </div> %>
+<% end %>
