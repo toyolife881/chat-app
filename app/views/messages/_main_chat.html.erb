@@ -46,6 +46,9 @@
 
   <%# _message.html.erbを部分テンプレートとして読み込むことが可能 %>
   <%# @messagesには繰り返し表示させたい要素が複数入っている %>
+  <%# collectionオプションで@messagesを指定したことにより、 %>
+  <%# messagesコントローラーのindexアクションで定義した@messages %>
+  <%# から取り出した1つ1つの要素をmessageとして、部分テンプレート_message.html.erbで使うことができる %>
   <%= render partial: 'message', collection: @messages %>
 </div>
 

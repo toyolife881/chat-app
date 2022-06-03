@@ -19,5 +19,7 @@
       <%# messagesテーブルのcontentカラムから取得したメッセージ内容 %>
       <%= message.content %>
     </div>
+    <%# attached?メソッドを記述することで、画像が存在する場合のみimage_tagが読み込まれる %>
+    <%= image_tag message.image.variant(resize: '500x500'), class: 'message_image' if message.image.attached? %>
   </div>
 </div>
